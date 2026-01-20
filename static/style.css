@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    caret-color: transparent;
+}
+#cont {
+    background-color: white;
+    height: 400px;
+    width: 500px;
+    border-radius: 25px;
+    text-align: center;
+    margin-top: 75px;
+}
+#cont h1 {
+    color: blueviolet;
+    padding-top: 20px;
+}
+#cont p {
+    color: grey;
+    padding-top: 10px;
+}
+#cont form textarea {
+    height: 150px;
+    width: 300px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    caret-color: black;
+}
+#cont form button {
+    margin-top: 20px;
+    height: 30px;
+    width: 60px;
+    background-color: blueviolet;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+}
