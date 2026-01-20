@@ -35,14 +35,14 @@ print(data_set_df.duplicated().sum())
 data_set_df = data_set_df.drop_duplicates(keep = "first")
 
 #Finding unwanted value
-# print(data_set_df["Category"])
+print(data_set_df["Category"])
 
 # #Removing unwanted value
 data_set_df = data_set_df.iloc[:-1]
 
 # #EDA
-# plt.pie(data_set_df["Category"].value_counts() , labels = data_set_df["Category"].value_counts().index , autopct = "%0.2f")
-# plt.show()
+plt.pie(data_set_df["Category"].value_counts() , labels = data_set_df["Category"].value_counts().index , autopct = "%0.2f")
+plt.show()
 
 data_set_df["num_characters"] = data_set_df["Message"].apply(len)
 
@@ -50,26 +50,26 @@ data_set_df["num_words"] = data_set_df["Message"].apply(lambda x : len( nltk.wor
 
 data_set_df["num_sentences"] = data_set_df["Message"].apply(lambda x : len( nltk.sent_tokenize(x)))
 
-# print(data_set_df[["num_characters" , "num_words" , "num_sentences"]].describe())
+print(data_set_df[["num_characters" , "num_words" , "num_sentences"]].describe())
 
-# print(data_set_df[data_set_df["Category"] == "ham"][["num_characters" , "num_words" , "num_sentences"]].describe())
+print(data_set_df[data_set_df["Category"] == "ham"][["num_characters" , "num_words" , "num_sentences"]].describe())
 
-# print(data_set_df[data_set_df["Category"] == "spam"][["num_characters" , "num_words" , "num_sentences"]].describe())
+print(data_set_df[data_set_df["Category"] == "spam"][["num_characters" , "num_words" , "num_sentences"]].describe())
 
-# sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_characters"] , color = "green")
-# sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_characters"] , color = "red")
-# plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
-# plt.show()
+sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_characters"] , color = "green")
+sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_characters"] , color = "red")
+plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
+plt.show()
 
-# sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_words"] , color = "green")
-# sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_words"] , color = "red")
-# plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
-# plt.show()
+sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_words"] , color = "green")
+sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_words"] , color = "red")
+plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
+plt.show()
 
-# sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_sentences"] , color = "green")
-# sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_sentences"] , color = "red")
-# plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
-# plt.show()
+sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_sentences"] , color = "green")
+sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_sentences"] , color = "red")
+plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
+plt.show()
 
 #Data Preproccesing
 def transform_text (text) :
