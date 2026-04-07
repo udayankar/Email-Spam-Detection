@@ -1,14 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for
 import joblib
 
-
-# Load trained model and vectorizer
-
 model = joblib.load("spam_model.pkl")
 vectorizer = joblib.load("vectorizer.pkl")
-
-
-# Flask App
 
 app = Flask(__name__)
 

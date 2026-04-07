@@ -18,42 +18,29 @@ from wordcloud import WordCloud
 from collections import Counter
 import joblib
 
-
-
-#Accessing dataset
 data_set = pd.read_csv("email.csv")
 data_set_df = pd.DataFrame(data_set)
-# print(data_set)
-# print(data_set_df)
+print(data_set)
+print(data_set_df)
 
-#Finding null values
 print(data_set_df.isnull().sum())
-#Finding duplicate values
 print(data_set_df.duplicated().sum())
 
-#Removing duplicate values
 data_set_df = data_set_df.drop_duplicates(keep = "first")
 
-#Finding unwanted value
 print(data_set_df["Category"])
 
-# #Removing unwanted value
 data_set_df = data_set_df.iloc[:-1]
 
-# #EDA
 plt.pie(data_set_df["Category"].value_counts() , labels = data_set_df["Category"].value_counts().index , autopct = "%0.2f")
 plt.show()
 
 data_set_df["num_characters"] = data_set_df["Message"].apply(len)
-
 data_set_df["num_words"] = data_set_df["Message"].apply(lambda x : len( nltk.word_tokenize(x)))
-
 data_set_df["num_sentences"] = data_set_df["Message"].apply(lambda x : len( nltk.sent_tokenize(x)))
 
 print(data_set_df[["num_characters" , "num_words" , "num_sentences"]].describe())
-
 print(data_set_df[data_set_df["Category"] == "ham"][["num_characters" , "num_words" , "num_sentences"]].describe())
-
 print(data_set_df[data_set_df["Category"] == "spam"][["num_characters" , "num_words" , "num_sentences"]].describe())
 
 sea.histplot(data_set_df[data_set_df["Category"] == "ham"]["num_characters"] , color = "green")
@@ -71,7 +58,6 @@ sea.histplot(data_set_df[data_set_df["Category"] == "spam"]["num_sentences"] , c
 plt.legend(loc = "upper right" , labels = ["Green = Ham" , "Red = Spam"])
 plt.show()
 
-#Data Preproccesing
 def transform_text (text) :
     y = []
     text = text.lower()
@@ -117,7 +103,6 @@ plt.xticks(rotation="vertical")
 plt.title("Most used words in Ham")
 plt.show()
 
-# #Model Building
 data_set_df["Category"] = data_set_df["Category"].replace({"ham" : 0 , "spam" : 1})
 tf = TfidfVectorizer()
 X = tf.fit_transform(data_set_df["Transformed-Text"]).toarray()
